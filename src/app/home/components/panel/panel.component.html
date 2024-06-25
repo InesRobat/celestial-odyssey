@@ -1,0 +1,61 @@
+@for (planet of universe; track $index) {
+<div class="carousel__item" [@slideVertical]="getCardState($index)" (@slideVertical.start)="onAnimationStart($event)"
+    (@slideVertical.done)="onAnimationDone($event)">
+    <div class="carousel__item-body">
+        <div class="name" [style.color]="planet.color" [class.gradient]="planet !== selectedPlanet"
+            [style.background]="planet !== selectedPlanet ? 'linear-gradient(to bottom, ' + planet.color + ', rgba(255, 0, 0, 0))' : ''">
+            {{planet.name}}</div>
+
+        @if (planet === selectedPlanet) {
+        <div class="info" [@fadeInOut]="getLabelState()">
+            @if (planet.distanceFromSun) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Distance from Sun</div>
+            <div class="distance planet">{{ planet.distanceFromSun }}</div>
+            }
+
+            @if (planet.diameter) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Diameter</div>
+            <div class="diameter planet">{{ planet.diameter }}</div>
+            }
+
+            @if (planet.orbitalPeriod) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Orbital Period</div>
+            <div class="orbital-period planet">{{ planet.orbitalPeriod }}</div>
+            }
+
+            <!-- @if (planet.surfaceTemperature) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Surface Temperature</div>
+            <div class="surface-temperature planet">{{ planet.surfaceTemperature }}</div>
+            }
+
+            @if (planet.gravity) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Gravity</div>
+            <div class="gravity planet">{{ planet.gravity }}</div>
+            }
+
+            @if (planet.atmosphericComposition) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Atmospheric Composition</div>
+            <div class="atmospheric-composition planet">{{ planet.atmosphericComposition }}</div>
+            } -->
+
+            @if (planet.interestingFacts) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Interesting Facts</div>
+            <div class="interesting-facts planet">{{ planet.interestingFacts }}</div>
+            }
+
+            <!-- @if (planet.numberOfMoons) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Number of Moons</div>
+            <div class="number-of-moons planet">{{ planet.numberOfMoons }}</div>
+            }
+
+            @if (planet.discoveryAndExploration) {
+            <div class="label" [ngStyle]="{ color: planet.color }">Discovery and Exploration</div>
+            <div class="discovery-and-exploration planet">{{ planet.discoveryAndExploration }}</div>
+            } -->
+        </div>
+
+        }
+
+    </div>
+</div>
+}

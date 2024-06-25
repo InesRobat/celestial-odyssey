@@ -1,0 +1,65 @@
+@import './../../../../../styles/utils.scss';
+
+:host {
+  @include flex(space-evenly, center, column);
+  width: 10%;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.planets {
+  @include flex(center, center, column);
+  width: get-vh(50px);
+  height: 100%;
+  gap: get-vh(60px);
+  position: relative;
+  border-radius: 5px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 120%;
+    background-color: rgba(255, 255, 255, 0.432);
+  }
+}
+
+.planet {
+  width: get-vh(15px);
+  height: get-vh(15px);
+  border-radius: 100%;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+  z-index: 1;
+  cursor: pointer;
+
+  img {
+    @include img(100%, 100%, contain, center);
+  }
+
+  &:hover {
+    transform: scale(1.2);
+    width: get-vh(35px);
+    height: get-vh(35px);
+  }
+}
+
+.planet.active {
+  transform: scale(1.2);
+  width: get-vh(30px);
+  height: get-vh(30px);
+}
+
+.lenght {
+  transform: rotate(-90deg);
+  color: rgba(255, 255, 255, 0.432);
+  font-size: em(10);
+}

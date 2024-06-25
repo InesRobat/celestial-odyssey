@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="planets">
+        <div *ngFor="let planet of universe; let i = index" class="planet"
+            [ngClass]="{'active': i === selectedPlanetIndex}" (click)="emitSelectedPlanetIndex.emit(i)">
+
+            <img [src]="planet.src" [alt]="planet.name">
+        </div>
+    </div>
+</div>
+
+<div class="lenght"> 0{{selectedPlanetIndex + 1 }} / 0{{ universe.length}}</div>
