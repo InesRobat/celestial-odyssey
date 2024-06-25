@@ -10,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'scroll-driven';
+  title = 'celestial-odyssey';
 
   isBlueText: boolean = true;
   isRedText: boolean = false;
