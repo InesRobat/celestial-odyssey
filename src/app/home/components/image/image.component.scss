@@ -7,23 +7,6 @@
   height: 100%;
 }
 
-
-@keyframes movingShadow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 20px 5px var(--planet-color, rgba(255, 0, 0, 0.7)),
-      0 0 40px 10px var(--planet-color, rgba(255, 0, 0, 0.4)),
-      0 0 70px 15px var(--planet-color, rgba(255, 0, 0, 0.2));
-  }
-
-  50% {
-    box-shadow: 0 0 30px 7px var(--planet-color, rgba(255, 0, 0, 0.8)),
-      0 0 60px 15px var(--planet-color, rgba(255, 0, 0, 0.6)),
-      0 0 100px 20px var(--planet-color, rgba(255, 0, 0, 0.4));
-  }
-}
-
 .solar-system {
   position: relative;
   width: 100%;
@@ -70,43 +53,6 @@
 
 .pulsing-shadow {
   animation: pulse-animation 3s infinite;
-}
-
-@keyframes pulse-animation {
-  0% {
-    box-shadow: 0 0 30px 15px var(--planet-color, rgba(255, 255, 255, 0.7));
-  }
-
-  50% {
-    box-shadow: 0 0 40px 20px var(--planet-color, rgba(255, 255, 255, 0.9));
-  }
-
-  100% {
-    box-shadow: 0 0 30px 15px var(--planet-color, rgba(255, 255, 255, 0.7));
-  }
-}
-
-
-@keyframes rotatePlanet {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.image {
-  width: get-vh(500px);
-  height: get-vh(500px);
-  border-radius: 50%;
-  overflow: hidden;
-  z-index: 2;
-
-  img {
-    @include img(100%, 100%, contain, center);
-  }
 }
 
 .shadow {
@@ -473,5 +419,46 @@ $asteroids-belt-pl: 210px;
 
   to {
     transform: rotate(-360deg)
+  }
+}
+
+@keyframes movingShadow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px 5px var(--planet-color, rgba(255, 0, 0, 0.7)),
+      0 0 40px 10px var(--planet-color, rgba(255, 0, 0, 0.4)),
+      0 0 70px 15px var(--planet-color, rgba(255, 0, 0, 0.2));
+  }
+
+  50% {
+    box-shadow: 0 0 30px 7px var(--planet-color, rgba(255, 0, 0, 0.8)),
+      0 0 60px 15px var(--planet-color, rgba(255, 0, 0, 0.6)),
+      0 0 100px 20px var(--planet-color, rgba(255, 0, 0, 0.4));
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 30px 15px var(--planet-color, rgba(255, 255, 255, 0.7));
+  }
+
+  50% {
+    box-shadow: 0 0 40px 20px var(--planet-color, rgba(255, 255, 255, 0.9));
+  }
+
+  100% {
+    box-shadow: 0 0 30px 15px var(--planet-color, rgba(255, 255, 255, 0.7));
+  }
+}
+
+
+@keyframes rotatePlanet {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
