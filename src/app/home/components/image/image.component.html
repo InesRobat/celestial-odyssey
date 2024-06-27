@@ -5,8 +5,8 @@
 
 <div class="solar-system">
     <div class="planet" *ngFor="let planet of universe; let i = index" [style.transform]="getTransform(i)"
-        [style.top]="getTop(i)" [style.opacity]="getOpacity(i)">
-        <img [src]="planet.src" [alt]="planet.name">
+        [style.top]="getTop(i)" [style.opacity]="getOpacity(i)" [style.--planet-color]="planet.color + '32'">
+        <img [src]="planet.src" [alt]="planet.name" #planet class="pulsing-shadow">
     </div>
 </div>
 

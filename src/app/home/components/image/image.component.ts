@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild, type OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, QueryList, Renderer2, SimpleChanges, ViewChild, ViewChildren, viewChildren, type OnInit } from '@angular/core';
 import { Planet } from '../../universe.model';
 
 @Component({
@@ -19,13 +19,17 @@ export class ImageComponent implements OnInit, OnChanges {
   @Input() selectedPlanetIndex!: number;
 
   @ViewChild('solar') solar!: ElementRef<HTMLElement>;
+  @ViewChildren('planet') planets!: QueryList<ElementRef<HTMLElement>>;
 
   currentIndex = 0;
   previousIndex = 0;
   animationInProgress = false;
 
+  constructor(private renderer: Renderer2) { }
+
   ngOnInit(): void {
     this.currentIndex = this.selectedPlanetIndex;
+    this.generatePlanetAnimations();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -82,5 +86,37 @@ export class ImageComponent implements OnInit, OnChanges {
   getShadowTransform(): string {
     const translateDist = 250;
     return `translateY(-10%) rotate(90deg) translateX(${translateDist}px) rotate(-90deg)`;
+  }
+
+
+  generatePlanetAnimations(): void {
+    this.universe.forEach((planet, index) => {
+      const keyframes = `
+        @keyframes movingShadow${index} {
+          0%, 100% {
+            box-shadow: 0 0 30px 15px ${planet.color};
+          }
+          50% {
+            box-shadow: 0 0 60px 30px ${planet.color};
+          }
+        }
+      `;
+      const style = this.renderer.createElement('style');
+      style.type = 'text/css';
+      style.innerHTML = keyframes;
+
+      this.renderer.appendChild(document.head, style);
+    });
+  }
+
+  getMovingShadowAnimation(index: number): string {
+    return `movingShadow${index} 5s ease-in-out infinite`;
+  }
+
+  getPlanetStyle(index: number, color: string): { [key: string]: string } {
+    return {
+      'box-shadow': `0 0 30px 15px ${color}`,
+      'animation': `${this.getMovingShadowAnimation(index)}, rotatePlanet 20s linear infinite`
+    };
   }
 }

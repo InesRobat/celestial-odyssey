@@ -8,15 +8,19 @@
 }
 
 
-.planet {
-  position: absolute;
-  top: 0;
-  left: 10%;
-  transform: translateX(-50%) rotate(0deg);
-  transition: transform 0.5s ease, top 0.5s ease, opacity 0.5s ease;
+@keyframes movingShadow {
 
-  img {
-    @include img(100%, 100%, contain, center);
+  0%,
+  100% {
+    box-shadow: 0 0 20px 5px var(--planet-color, rgba(255, 0, 0, 0.7)),
+      0 0 40px 10px var(--planet-color, rgba(255, 0, 0, 0.4)),
+      0 0 70px 15px var(--planet-color, rgba(255, 0, 0, 0.2));
+  }
+
+  50% {
+    box-shadow: 0 0 30px 7px var(--planet-color, rgba(255, 0, 0, 0.8)),
+      0 0 60px 15px var(--planet-color, rgba(255, 0, 0, 0.6)),
+      0 0 100px 20px var(--planet-color, rgba(255, 0, 0, 0.4));
   }
 }
 
@@ -24,7 +28,64 @@
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.planet {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  transform: translateX(-50%) rotate(0deg);
+  transition: transform 0.5s ease, top 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease-out;
+  width: get-vh(700px);
+  height: get-vh(700px);
+  border-radius: 50%;
+  overflow: hidden;
+  animation: rotatePlanet 60s linear infinite, movingShadow 10s ease-in-out infinite;
   z-index: 10;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: brightness(0.8);
+    box-shadow:
+      0 0 30px rgba(0, 0, 0, 0.4),
+      inset 0 0 20px rgba(255, 255, 255, 0.911);
+
+    &:hover {
+      filter: brightness(1);
+    }
+  }
+}
+
+.pulsing-shadow {
+  animation: pulse-animation 3s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 30px 15px var(--planet-color, rgba(255, 255, 255, 0.7));
+  }
+
+  50% {
+    box-shadow: 0 0 40px 20px var(--planet-color, rgba(255, 255, 255, 0.9));
+  }
+
+  100% {
+    box-shadow: 0 0 30px 15px var(--planet-color, rgba(255, 255, 255, 0.7));
+  }
+}
+
+
+@keyframes rotatePlanet {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .image {
@@ -142,6 +203,7 @@ $asteroids-belt-pl: 210px;
   position: absolute;
   right: -50%;
   transition: transform .3s ease;
+  z-index: 1;
 
   &:after {
     content: "";
