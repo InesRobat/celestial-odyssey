@@ -2,8 +2,8 @@
 <div class="carousel__item" [@slideVertical]="getCardState($index)" (@slideVertical.start)="onAnimationStart($event)"
     (@slideVertical.done)="onAnimationDone($event)">
     <div class="carousel__item-body">
-        <div class="name" [style.color]="planet.color" [class.gradient]="planet !== selectedPlanet"
-            [style.background]="planet !== selectedPlanet ? 'linear-gradient(to bottom, ' + planet.color + ', rgba(255, 0, 0, 0))' : ''">
+        <div class="name" [style.color]="getColorStyle($index)" [class.gradient]="planet !== selectedPlanet"
+            [style.background]="getBackgroundStyle($index)">
             {{planet.name}}</div>
 
         @if (planet === selectedPlanet) {

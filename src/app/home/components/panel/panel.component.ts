@@ -39,7 +39,7 @@ import { Planet } from '../../universe.model';
         opacity: 0,
         visibility: 'hidden'
       })),
-      transition('* => *', animate('700ms cubic-bezier(0.68, -0.55, 0.27, 1.55)'))
+      transition('* => *', animate('700ms cubic-bezier(0.35, 0, 0.25, 1)'))
     ]),
     trigger('fadeInOut', [
       state('in', style({
@@ -61,6 +61,7 @@ export class PanelComponent implements OnInit {
   @ViewChild('name') name!: ElementRef<HTMLDivElement>;
 
   labelVisible: boolean = false;
+  animPosition: string = 'to bottom';
 
   constructor() { }
 
@@ -70,8 +71,10 @@ export class PanelComponent implements OnInit {
     if (index === this.selectedPlanetIndex) {
       return 'center';
     } else if (index === this.selectedPlanetIndex - 1) {
+      this.animPosition = 'to bottom';
       return 'left';
     } else if (index === this.selectedPlanetIndex + 1) {
+      this.animPosition = 'to top';
       return 'right';
     } else {
       return 'void';
@@ -91,6 +94,26 @@ export class PanelComponent implements OnInit {
   onAnimationDone(event: any): void {
     if (event.toState === 'center') {
       this.labelVisible = true;
+    }
+  }
+
+  getBackgroundStyle(index: number) {
+    if (index === this.selectedPlanetIndex - 1) {
+      return 'linear-gradient(to top,' + this.universe[index].color + ', rgba(255, 0, 0, 0))';
+    } else if (index === this.selectedPlanetIndex + 1) {
+      return 'linear-gradient(to bottom,' + this.universe[index].color + ', rgba(255, 0, 0, 0))';
+    } else {
+      return '';
+    }
+  }
+
+  getColorStyle(index: number) {
+    if (index === this.selectedPlanetIndex - 1) {
+      return '';
+    } else if (index === this.selectedPlanetIndex + 1) {
+      return '';
+    } else {
+      return this.universe[index].color;
     }
   }
 

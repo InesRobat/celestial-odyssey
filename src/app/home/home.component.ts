@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
         curviness: 1.5
       },
       opacity: this.R(1),
-      scale: this.R(1) + 0.5,
+      scale: this.R(1) + 0.05,
       delay: this.R(8),
       onComplete: () => this.anim(elm)
     });

@@ -37,6 +37,8 @@
   width: auto;
   height: get-vh(50px);
   gap: 10px;
+  cursor: pointer;
+  z-index: 100;
 
   &__next,
   &__prev {
