@@ -59,6 +59,15 @@
   }
 }
 
+.no-shadow {
+  box-shadow: none !important;
+  border-radius: none;
+
+  img {
+    object-fit: contain;
+  }
+}
+
 .pulsing-shadow {
   animation: pulse-animation 3s infinite;
 }
