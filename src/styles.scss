@@ -29,3 +29,19 @@ body {
     z-index: 2;
     transition: all 0.3s ease;
 }
+
+@keyframes movingShadow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px 5px var(--planet-color, rgba(255, 0, 0, 0.7)),
+            0 0 40px 10px var(--planet-color, rgba(255, 0, 0, 0.4)),
+            0 0 70px 15px var(--planet-color, rgba(255, 0, 0, 0.2));
+    }
+
+    50% {
+        box-shadow: 0 0 30px 7px var(--planet-color, rgba(255, 0, 0, 0.8)),
+            0 0 60px 15px var(--planet-color, rgba(255, 0, 0, 0.6)),
+            0 0 100px 20px var(--planet-color, rgba(255, 0, 0, 0.4));
+    }
+}
