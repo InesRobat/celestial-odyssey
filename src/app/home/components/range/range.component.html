@@ -3,7 +3,7 @@
         <div *ngFor="let planet of universe; let i = index" class="planet"
             [ngClass]="{'active': i === selectedPlanetIndex}" (click)="emitSelectedPlanetIndex.emit(i)">
 
-            <img [src]="planet.src" [alt]="planet.name">
+            <img [src]="planet.src" [alt]="planet.name" draggable="false" loading="lazy">
         </div>
     </div>
 </div>
