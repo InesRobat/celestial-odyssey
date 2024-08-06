@@ -84,8 +84,9 @@ export class ImageComponent implements OnInit, OnChanges {
   }
 
   getShadowTransform(): string {
-    const translateDist = 250;
-    return `translateY(-10%) rotate(90deg) translateX(${translateDist}px) rotate(-90deg)`;
+    // const translateDist = 250;
+    // rotate(90deg) translateX(${translateDist}px) rotate(-90deg)
+    return `translateY(3%) `;
   }
 
 

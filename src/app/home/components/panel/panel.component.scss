@@ -5,9 +5,13 @@
   width: 40%;
   height: 100%;
   gap: 10px;
-  // padding: 2%;
-  // box-sizing: border-box;
   color: $white;
+
+  @media (max-width: 809px) {
+    width: 100%;
+    padding: 5%;
+    box-sizing: border-box;
+  }
 }
 
 .name {
@@ -28,6 +32,10 @@
   margin-bottom: get-vh(20px);
   font-size: em(20);
   width: 60%;
+
+  @media (max-width: 809px) {
+    width: 100%;
+  }
 }
 
 .gradient {
@@ -44,12 +52,20 @@
   box-sizing: border-box;
   opacity: 0;
   filter: drop-shadow(0 2px 2px #555);
+
+  @media (max-width: 809px) {
+    padding: 5%;
+  }
 }
 
 .carousel__item-body {
   @include flex(center, flex-start, column);
   padding: 15% 0;
   box-sizing: border-box;
+
+  @media (max-width: 809px) {
+    padding: 15%;
+  }
 }
 
 .info {

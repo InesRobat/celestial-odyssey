@@ -28,6 +28,12 @@
   --planet-color: rgba(255, 0, 0, 0.7);
   animation: rotatePlanet 60s linear infinite, movingShadow 10s ease-in-out infinite;
   z-index: 10;
+  // border: 1px solid green;
+
+  @media (max-width: 809px) {
+    width: get-vh(500px);
+    height: get-vh(500px);
+  }
 
   img {
     width: 100%;
@@ -65,8 +71,19 @@
   top: -30%;
   left: 0;
   border-radius: 150%;
-  // transform-origin: top left;
   transition: box-shadow 0.3s ease-in-out;
+
+  @media (max-width: 809px) {
+    width: 200%;
+    top: 30%;
+    left: -50%;
+  }
+
+  @media (max-width: 480px) {
+    width: 450%;
+    top: 30%;
+    left: -190%;
+  }
 }
 
 .carousel {
@@ -162,6 +179,13 @@ $asteroids-belt-pl: 210px;
   right: -50%;
   transition: transform .3s ease;
   z-index: 1;
+
+  @media (max-width: 809px) {
+    bottom: -50%;
+    right: 0;
+    width: get-vh(500px);
+    height: get-vh(500px);
+  }
 
   &:after {
     content: "";

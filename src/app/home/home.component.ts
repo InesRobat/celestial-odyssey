@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { PanelComponent } from './components/panel/panel.component';
 import { ImageComponent } from './components/image/image.component';
 import { UNIVERSE } from './home';
@@ -25,6 +25,9 @@ gsap.registerPlugin(MotionPathPlugin);
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('prev') public prev!: ElementRef<HTMLDivElement>;
+  @ViewChild('next') public next!: ElementRef<HTMLDivElement>;
 
   public universe = UNIVERSE;
   public selectedPlanet = this.universe[0];
@@ -67,6 +70,7 @@ export class HomeComponent implements OnInit {
     const nextIndex = (index + 1) % this.universe.length;
     this.selectPlanet(this.universe[nextIndex]);
     this.selectedPlanetIndex = nextIndex;
+    this.animateButtonPress(this.next.nativeElement);
   }
 
   public selectPreviousPlanet(): void {
@@ -74,6 +78,7 @@ export class HomeComponent implements OnInit {
     const previousIndex = (index - 1 + this.universe.length) % this.universe.length;
     this.selectPlanet(this.universe[previousIndex]);
     this.selectedPlanetIndex = previousIndex;
+    this.animateButtonPress(this.prev.nativeElement);
   }
 
   public selectPlanet(planet: Planet): void {
@@ -84,4 +89,12 @@ export class HomeComponent implements OnInit {
     this.selectedPlanetIndex = index;
     this.selectPlanet(this.universe[index]);
   }
+
+  private animateButtonPress(element: HTMLDivElement): void {
+    gsap.fromTo(element, { scale: 1 }, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
+  }
 }
+
+// @media (min-width: 810px) and (max-width: 1199px),
+//   (max-width: 809px) {
+//   }

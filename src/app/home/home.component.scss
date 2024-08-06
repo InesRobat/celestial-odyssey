@@ -11,6 +11,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @media (max-width: 809px) {
+    flex-direction: column;
+  }
 }
 
 #container {
@@ -48,5 +52,16 @@
     border-radius: 100%;
     background: transparent;
     background-color: rgba(255, 255, 255, 0.08);
+
+    @media (max-width: 809px) {
+      width: get-vh(25px);
+      height: get-vh(25px);
+    }
+  }
+
+  @media (max-width: 809px) {
+    height: get-vh(25px);
+    top: 10%;
+    right: 2%;
   }
 }
